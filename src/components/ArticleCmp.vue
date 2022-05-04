@@ -1,9 +1,9 @@
 <template>
-  <!-- <article> -->
-  <h2>{{ title }}</h2>
-  <h2 v-bind="$attrs">Likes - {{ likes }}</h2>
-  <h2>Published - {{ isPublished ? "Yes" : "No" }}</h2>
-  <!-- </article> -->
+  <article>
+    <h2>{{ title }}</h2>
+    <h2 v-bind="$attrs">Likes - {{ likes }}</h2>
+    <h2>Published - {{ isPublished ? "Yes" : "No" }}</h2>
+  </article>
 </template>
 
 <script>
