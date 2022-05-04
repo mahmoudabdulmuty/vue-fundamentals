@@ -83,6 +83,21 @@
   <h2>Add method - {{ add(5, 10, 15) }}</h2>
   <h2>Multiply method - {{ multiply(10) }}</h2>
   <h2>Multiply method - {{ multiply(baseValue) }}</h2>
+
+  <!-- Event Handling -->
+  <h2>{{ name }}</h2>
+  <div>
+    <button @click="changeName($event), increment(1, $event)">
+      Change name
+    </button>
+  </div>
+  <h2>{{ count }}</h2>
+  <div>
+    <button @click="increment(1, $event)">Increment</button>
+    <button @click="decrement(1)">Decrement</button>
+    <button @click="increment(5)">Increment 5</button>
+    <button @click="decrement(5)">Decrement 5</button>
+  </div>
 </template>
 
 <script>
@@ -192,6 +207,13 @@ export default {
     },
     multiply(num) {
       return num * this.baseMultiplier;
+    },
+    increment(num, event) {
+      this.count += num;
+      console.log(event);
+    },
+    decrement(num) {
+      this.count -= num;
     },
   },
 };
