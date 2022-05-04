@@ -210,6 +210,11 @@
       <button>Submit</button>
     </div>
   </form>
+
+  <!-- Bonus Directives -->
+  <h2 v-once>{{ name }}</h2>
+  <button @click="name = 'Batman'">Change name</button>
+  <h2 v-pre>{{ name }}</h2>
 </template>
 
 <script>
