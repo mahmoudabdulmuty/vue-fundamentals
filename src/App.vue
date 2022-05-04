@@ -1,60 +1,231 @@
 <template>
-  <div class="container">
-    <Header />
+  <!-- Binding Text -->
+  <div>{{ greet }} {{ name }}</div>
+
+  <!-- Binding HTML -->
+  <div v-html="channel"></div>
+  <div v-html="hack"></div>
+
+  <!-- Bidning Attributes -->
+  <h2 :id="headingId">Heading</h2>
+  <button :disabled="isDisabled">Bind</button>
+
+  <!-- Binding Classes -->
+  <h2 class="underline">Underlined Text</h2>
+  <h2 :class="status">Status</h2>
+  <h2 class="underline" :class="status">Static Dynamic</h2>
+  <h2 :class="isPromoted && 'promoted'">Promoted Movie</h2>
+  <h2 :class="isSoldOut ? 'sold-out' : 'new'">Soldout? Movie</h2>
+  <h2 :class="['new', 'promoted']">Newly Promoted Movie</h2>
+  <h2 :class="[isPromoted && 'promoted', isSoldOut ? 'sold-out' : 'new']">
+    Array Conditional Movie
+  </h2>
+  <h2
+    :class="{
+      promoted: isPromoted,
+      new: !isSoldOut,
+      'sold-out': isSoldOut,
+    }"
+  >
+    Object Conditional Movie
+  </h2>
+
+  <!-- Binding Inline Styles -->
+  <h2
+    :style="{
+      color: highlightColor,
+      fontSize: headerSize + 'px',
+      padding: '20px',
+    }"
+  >
+    Inline Style
+  </h2>
+  <h2 :style="headerStyleObject">Style Object</h2>
+  <div :style="[baseStyleObject, successStyleObject]">Success Style</div>
+  <div :style="[baseStyleObject, dangerStyleObject]">Danger Style</div>
+
+  <!-- Conditional Rendering -->
+  <h1 v-if="num === 0">The number is zero</h1>
+  <h2 v-else-if="num < 0">The number is negative</h2>
+  <h2 v-else-if="num > 0">The number is positive</h2>
+  <h2 v-else>Not a number</h2>
+  <template v-if="showElement">
+    <h2>Vishwas</h2>
+    <h2>Codevolution</h2>
+    <h2>Vue 3</h2>
+  </template>
+  <h2 v-show="showElement">Using v-show</h2>
+
+  <!-- List Rendering -->
+  <h2 v-for="(name, index) in names" :key="name">{{ index }} {{ name }}</h2>
+  <h2 v-for="name in fullNames" :key="name.first">
+    {{ name.first }} {{ name.last }}
+  </h2>
+  <div v-for="actor in actors" :key="actor.name">
+    <h2>{{ actor.name }}</h2>
+    <h3 v-for="movie in actor.movies" :key="movie">{{ movie }}</h3>
   </div>
+  <h2 v-for="(value, key, index) in myInfo" :key="value">
+    {{ index }} {{ key }} {{ value }}
+  </h2>
+  <template v-for="name in names" :key="name">
+    <h2>{{ name }}</h2>
+    <hr />
+  </template>
+  <template v-for="name in names" :key="name">
+    <h2 v-if="name === 'Bruce'">{{ name }}</h2>
+  </template>
+
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-
 export default {
   name: "App",
-  components: {
-    Header,
+  components: {},
+  data() {
+    return {
+      name: "Vishwas",
+      greet: "Hello",
+      channel: "<b>Codevolution</b>",
+      hack: `<a href="#" onclick="alert('You have been hacked!')">Win a prize!<a/>`,
+      headingId: "heading",
+      isDisabled: true,
+      status: "danger",
+      isPromoted: false,
+      isSoldOut: true,
+      highlightColor: "orange",
+      headerSize: 50,
+      headerStyleObject: {
+        color: "orange",
+        fontSize: "50px",
+        padding: "20px",
+      },
+      baseStyleObject: {
+        fontSize: "50px",
+        padding: "10px",
+      },
+      successStyleObject: {
+        color: "green",
+        backgroundColor: "lightgreen",
+        border: "1px solid green",
+      },
+      dangerStyleObject: {
+        color: "darkred",
+        backgroundColor: "red",
+        border: "1px solid darkred",
+      },
+      num: 1,
+      showElement: false,
+      names: ["Bruce", "Clark", "Diana"],
+      fullNames: [
+        { first: "Bruce", last: "Wayne" },
+        { first: "Clark", last: "Kent" },
+        { first: "Princess", last: "Diana" },
+      ],
+      actors: [
+        {
+          name: "Christian Bale",
+          movies: ["Batman", "American Psycho"],
+        },
+        {
+          name: "Di Caprio",
+          movies: ["Titanic", "Inception"],
+        },
+      ],
+      myInfo: {
+        name: "Vishwas",
+        channel: "Codevolution",
+        course: "Vue 3",
+      },
+      baseMultiplier: 5,
+      baseValue: 2,
+      count: 0,
+      formValues: {
+        name: "",
+        profileSummary: "",
+        country: "",
+        jobLocation: [],
+        remoteWork: "no",
+        skillSet: [],
+        yearsOfExperience: "",
+        age: null,
+      },
+      firstName: "Bruce",
+      lastName: "Wayne",
+      items: [
+        {
+          id: 1,
+          title: "TV",
+          price: 100,
+        },
+        {
+          id: 2,
+          title: "Phone",
+          price: 200,
+        },
+        {
+          id: 3,
+          title: "Laptop",
+          price: 300,
+        },
+      ],
+      country: "",
+      volume: 16,
+      movie: "batman",
+      movieInfo: {
+        title: "",
+        actor: "",
+      },
+      movieList: ["Batman", "Superman"],
+    };
   },
 };
 </script>
 
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-align: center; */
+  color: #2c3e50;
+  margin-top: 60px;
 }
-body {
-  font-family: "Poppins", sans-serif;
+.underline {
+  text-decoration: underline;
 }
-.container {
-  max-width: 500px;
-  margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  border: 1px solid steelblue;
-  padding: 30px;
-  border-radius: 5px;
+.promoted {
+  font-style: italic;
 }
-.btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: inherit;
+.new {
+  color: olivedrab;
 }
-.btn:focus {
-  outline: none;
+.sold-out {
+  color: red;
 }
-.btn:active {
-  transform: scale(0.98);
+label {
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 5px;
 }
-.btn-block {
+input + label {
+  font-weight: bold;
+  display: inline-flex;
+  margin-right: 20px;
+}
+input[type="text"],
+textarea,
+select {
   display: block;
-  width: 100%;
+  width: 400px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 </style>
