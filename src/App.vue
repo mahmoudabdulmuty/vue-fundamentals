@@ -87,7 +87,13 @@
   <!-- Event Handling -->
   <h2>{{ name }}</h2>
   <div>
-    <button @click="changeName($event), increment(1, $event)">
+    <button
+      @click="
+        changeName('Mahmoud'),
+          increment(1, $event),
+          changeName('Mohamed', $event)
+      "
+    >
       Change name
     </button>
   </div>
@@ -207,6 +213,9 @@ export default {
     },
     multiply(num) {
       return num * this.baseMultiplier;
+    },
+    changeName(username) {
+      this.name = username;
     },
     increment(num, event) {
       this.count += num;
