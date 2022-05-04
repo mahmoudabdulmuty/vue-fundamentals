@@ -357,6 +357,38 @@ export default {
     decrement(num) {
       this.count -= num;
     },
+    submitForm() {
+      console.log("form values", this.formValues);
+    },
+    getTotal() {
+      console.log("getTotal method");
+      return this.items.reduce(
+        (total, curr) => (total = total + curr.price),
+        0
+      );
+    },
+  },
+  computed: {
+    fullName: {
+      get() {
+        return `${this.firstName} ${this.lastName}`;
+      },
+      set(value) {
+        const names = value.split(" ");
+        this.firstName = names[0];
+        this.lastName = names[1];
+      },
+    },
+    total() {
+      console.log("total computed property");
+      return this.items.reduce(
+        (total, curr) => (total = total + curr.price),
+        0
+      );
+    },
+    expensiveItems() {
+      return this.items.filter((item) => item.price > 100);
+    },
   },
 };
 </script>
