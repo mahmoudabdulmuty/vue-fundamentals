@@ -1,42 +1,25 @@
 <template>
-  <greet username="Mahmoud" user-age="30" />
-  <greet username="Mohamed" user-age="25" />
-  <greet username="Ahmed" user-age="14" />
-  <greet :username="channel" :user-age="userAge" />
-  <article-cmp
-    id="my-article"
-    :title="channel"
-    :isPublished="true"
-    :likes="50"
-  />
-  <component-a />
+  <button @click="isVisible = true">show</button>
+  <popup v-show="isVisible" @close-modal="closeModal" />
 </template>
 
 <script>
-import ArticleCmp from "./components/ArticleCmp.vue";
-import ComponentA from "./components/ComponentA.vue";
-import Greet from "./components/Greet.vue";
-
+import Popup from "./components/Popup.vue";
 export default {
   name: "App",
-  components: {
-    Greet,
-    ArticleCmp,
-    ComponentA,
-  },
+  components: { Popup },
   data() {
     return {
-      channel: "CodeEvolution",
-      userAge: 18,
+      isVisible: false,
     };
+  },
+  methods: {
+    closeModal() {
+      this.isVisible = false;
+    },
   },
 };
 </script>
 
-<style>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+<style scoped>
 </style>
