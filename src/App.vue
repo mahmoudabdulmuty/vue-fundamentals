@@ -1,23 +1,16 @@
 <template>
-  <button @click="isVisible = true">show</button>
-  <popup v-show="isVisible" @close-modal="closeModal" />
+  <custom-input v-model="username" />
 </template>
 
 <script>
-import Popup from "./components/Popup.vue";
+import CustomInput from "./components/CustomInput.vue";
 export default {
-  name: "App",
-  components: { Popup },
   data() {
     return {
-      isVisible: false,
+      username: "",
     };
   },
-  methods: {
-    closeModal() {
-      this.isVisible = false;
-    },
-  },
+  components: { CustomInput },
 };
 </script>
 
