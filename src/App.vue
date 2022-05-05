@@ -2,8 +2,9 @@
   <button @click="activeCMP = 'CmpA'">CMPA</button>
   <button @click="activeCMP = 'CmpB'">CMPB</button>
   <button @click="activeCMP = 'CmpC'">CMPC</button>
-
-  <component :is="activeCMP" />
+  <keep-alive>
+    <component :is="activeCMP" />
+  </keep-alive>
 </template>
 
 <script>
