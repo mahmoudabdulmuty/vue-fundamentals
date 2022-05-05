@@ -1,22 +1,28 @@
 <template>
-  <name-list>
-    <template v-slot:default="slotProps">
-      {{ slotProps.firstName }} {{ slotProps.lastName }}
-    </template>
-  </name-list>
+  <button @click="activeCMP = 'CmpA'">CMPA</button>
+  <button @click="activeCMP = 'CmpB'">CMPB</button>
+  <button @click="activeCMP = 'CmpC'">CMPC</button>
 
-  <name-list>
-    <template v-slot:default="slotProps">
-      {{ slotProps.lastName }} {{ slotProps.firstName }}
-    </template>
-  </name-list>
+  <component :is="activeCMP" />
 </template>
 
 <script>
-import NameList from "./components/NameList.vue";
+import CmpA from "./components/cmpA.vue";
+import CmpB from "./components/cmpB.vue";
+import CmpC from "./components/cmpC.vue";
+
 export default {
-  components: { NameList },
+  components: {
+    CmpA,
+    CmpB,
+    CmpC,
+  },
   name: "App",
+  data() {
+    return {
+      activeCMP: "CmpA",
+    };
+  },
 };
 </script>
 
