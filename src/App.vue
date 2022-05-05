@@ -1,16 +1,16 @@
 <template>
-  <custom-input v-model="username" />
+  <card></card>
+  <card>Card Content</card>
+  <card><img src="https://picsum.photos/200" /></card>
 </template>
 
 <script>
-import CustomInput from "./components/CustomInput.vue";
+import Card from "./components/Card";
 export default {
-  data() {
-    return {
-      username: "",
-    };
+  name: "App",
+  components: {
+    Card,
   },
-  components: { CustomInput },
 };
 </script>
 
