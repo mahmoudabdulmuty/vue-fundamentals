@@ -9,10 +9,12 @@
     :isPublished="true"
     :likes="50"
   />
+  <component-a />
 </template>
 
 <script>
 import ArticleCmp from "./components/ArticleCmp.vue";
+import ComponentA from "./components/ComponentA.vue";
 import Greet from "./components/Greet.vue";
 
 export default {
@@ -20,6 +22,7 @@ export default {
   components: {
     Greet,
     ArticleCmp,
+    ComponentA,
   },
   data() {
     return {
